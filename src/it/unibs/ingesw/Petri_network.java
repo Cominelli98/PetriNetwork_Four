@@ -3,12 +3,12 @@ package it.unibs.ingesw;
 import java.util.ArrayList;
 
 public class Petri_network implements IDNameGiver{
-	private ArrayList<Petri_location> petriLocations;
-	private ArrayList<Petri_transition> petriTransitions;
-	private ArrayList<Petri_link> petriNetLinks;
-	private int petriNetId; 
-	private int fatherNetId;
-	private String name;
+	protected ArrayList<Petri_location> petriLocations;
+	protected ArrayList<Petri_transition> petriTransitions;
+	protected ArrayList<Petri_link> petriNetLinks;
+	protected int petriNetId; 
+	protected int fatherNetId;
+	protected String name;
 	static int petriNetworkId = 0;
 	
 	public Petri_network(Network n, String name) {

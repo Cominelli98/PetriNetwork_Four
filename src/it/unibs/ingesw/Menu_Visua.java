@@ -101,6 +101,41 @@ public final class Menu_Visua {
 		
 	}
 	
+	public static void pnpViewer(ArrayList<Priority_network> pnp) {
+		System.out.println("Quale pnp vuoi visualizzare?");
+		System.out.println(getPnpList(pnp));
+		int i = Utility.readLimitedInt(0, pnp.size());
+		int select = -1;
+		do {
+			for (String s : MENUVISUALIZZA)
+				System.out.println(s);
+			select = Utility.readLimitedInt(0, MENUVISUALIZZA.length-4);
+			
+			switch(select) {
+			case 1:
+				System.out.println("ELENCO LOCATIONS:");
+				System.out.println(pnp.get(i).getLocationsList());
+				break;
+			case 2:
+				System.out.println("ELENCO TRANSITIONS:");
+				System.out.println(pnp.get(i).getTransitionsList());
+				break;
+			case 3:
+				System.out.println("ELENCO LINKS:");
+				System.out.println(pnp.get(i).getLinksList());
+				break;
+			case 4:
+				printPnp(pnp.get(i));
+				break;
+			case 0:
+				break;
+			}
+		}while (select != 0);
+		
+	}
+	
+	
+	
 	public static StringBuffer getPNetworksList(ArrayList<Petri_network> pn){
 		StringBuffer f = new StringBuffer("");
 		int i = 0;
@@ -109,7 +144,7 @@ public final class Menu_Visua {
 		}
 		return f;
 	}
-	//DOMANI CI PENSO DEVO FARE TRE METODINI PER LA STAMPINA DI QUESTE TRE COSINE COSI LO RICHIAMO IN SIMULATORE MA SO MIA BU
+
 	
 	public static void printPetriNet(Petri_network pn) {
 		System.out.println("ELENCO LOCATIONS:");
@@ -120,6 +155,23 @@ public final class Menu_Visua {
 		System.out.println(pn.getLinksList());
 		}
 	
+	public static StringBuffer getPnpList(ArrayList<Priority_network> pnp){
+		StringBuffer f = new StringBuffer("");
+		int i = 0;
+		for (Priority_network n : pnp) {
+			f.append(i++ + ")" + n.getName() + "\n");
+		}
+		return f;
+	}
+	
+	public static void printPnp(Priority_network pnp) {
+		System.out.println("ELENCO LOCATIONS:");
+		System.out.println(pnp.getLocationsList());
+		System.out.println("ELENCO TRANSITIONS:");
+		System.out.println(pnp.getTransitionsList());
+		System.out.println("ELENCO LINKS:");
+		System.out.println(pnp.getLinksList());
+		}
 	public void savedNetViewer(ArrayList<Network> savedNet) {
 		
 	}

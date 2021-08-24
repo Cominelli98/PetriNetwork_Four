@@ -21,6 +21,7 @@ public class Menu {
 	private Network currentNetwork;
 	private ArrayList<Network> networks;
 	private ArrayList<Petri_network> petriNetworks;
+	private ArrayList<Priority_network> priorityNetworks;
 	
 	/**
 	 * Costruisce un menù inizializzando l'array di reti e creando, se non esiste ancora, il file su cui verranno
@@ -30,6 +31,7 @@ public class Menu {
 		
 		networks = new ArrayList<>();
 		petriNetworks = new ArrayList<>();
+		priorityNetworks = new ArrayList<>();
 		WriteN.fileCreation();
 		Network.network_id = Utility.getMax(ReadN.getNetIDsFromFile(Network.class));
 		Petri_network.petriNetworkId = Utility.getMax(ReadN.getNetIDsFromFile(Petri_network.class));
