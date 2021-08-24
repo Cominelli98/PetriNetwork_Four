@@ -1,0 +1,27 @@
+VERSIONE 3 – REQUISITI FUNZIONALI
+
+La terza versione dell’applicazione, in aggiunta alle funzionalità delle due versioni
+precedenti, consente al fruitore di scegliere una PN fra quelle salvate in forma persistente
+dal configuratore e simulare una o più evoluzioni della stessa. 
+All’inizio della simulazione la marcatura corrente è quella iniziale. 
+La simulazione procede iterativamente, raggiungendo a ogni iterazione una nuova marcatura, attraverso lo scatto
+di una delle transizioni abilitate data la marcatura corrente. 
+La marcatura raggiunta (che, incidentalmente, può coincidere con quella corrente) diventa quella corrente, e così via
+finché il fruitore non ponga fine alla simulazione o non si sia raggiunta una marcatura
+che denoti un blocco critico della PN.
+Più in dettaglio, a ogni iterazione della simulazione, data la marcatura corrente, si
+possono verificare tre casi:
+
+1) non esiste alcuna transizione abilitata: l’applicazione evidenzia la situazione di
+blocco critico e termina la simulazione;
+
+2) esiste una sola transizione abilitata: l’applicazione visualizza tale transizione nonché
+la marcatura prossima raggiunta attraverso lo scatto della stessa;
+
+3) esistono più transizioni abilitate: l’applicazione le mostra, chiede al fruitore di
+selezionarne una e visualizza la marcatura prossima raggiunta attraverso lo scatto
+della stessa.
+
+Al termine dell’iterazione condotta secondo i casi 2 e 3, l’applicazione chiede al fruitore
+se intende o meno continuare la simulazione, ne acquisisce la risposta e agisce di
+conseguenza.
