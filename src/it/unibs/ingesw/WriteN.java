@@ -14,6 +14,7 @@ public final class WriteN {
 	public static String SAVE_ERROR = "errore nel salvataggio";
 	private static final String FILE_NET = "data.txt";
 	private static final String FILE_PNET = "petri_data.txt";
+	private static final String FILE_PNP = "pnp_data.txt";
 
 	
 	
@@ -53,6 +54,8 @@ public final class WriteN {
 			data = FILE_NET;
 		else if (net.getClass() == Petri_network.class)
 			data = FILE_PNET;
+		else if (net.getClass() == Priority_network.class)
+			data = FILE_PNP;
 		else 
 			throw new IllegalArgumentException("tipo non valido");
 		File file = new File(data);
@@ -81,6 +84,14 @@ public final class WriteN {
 		if (!fp.exists()) {
 			try {
 				fp.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		File fpnp = new File("pnp_data.txt");
+		if (!fpnp.exists()) {
+			try {
+				fpnp.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

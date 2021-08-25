@@ -1,27 +1,37 @@
-VERSIONE 3 – REQUISITI FUNZIONALI
-
-La terza versione dell’applicazione, in aggiunta alle funzionalità delle due versioni
-precedenti, consente al fruitore di scegliere una PN fra quelle salvate in forma persistente
-dal configuratore e simulare una o più evoluzioni della stessa. 
-All’inizio della simulazione la marcatura corrente è quella iniziale. 
-La simulazione procede iterativamente, raggiungendo a ogni iterazione una nuova marcatura, attraverso lo scatto
-di una delle transizioni abilitate data la marcatura corrente. 
-La marcatura raggiunta (che, incidentalmente, può coincidere con quella corrente) diventa quella corrente, e così via
-finché il fruitore non ponga fine alla simulazione o non si sia raggiunta una marcatura
-che denoti un blocco critico della PN.
-Più in dettaglio, a ogni iterazione della simulazione, data la marcatura corrente, si
-possono verificare tre casi:
-
-1) non esiste alcuna transizione abilitata: l’applicazione evidenzia la situazione di
-blocco critico e termina la simulazione;
-
-2) esiste una sola transizione abilitata: l’applicazione visualizza tale transizione nonché
-la marcatura prossima raggiunta attraverso lo scatto della stessa;
-
-3) esistono più transizioni abilitate: l’applicazione le mostra, chiede al fruitore di
-selezionarne una e visualizza la marcatura prossima raggiunta attraverso lo scatto
-della stessa.
-
-Al termine dell’iterazione condotta secondo i casi 2 e 3, l’applicazione chiede al fruitore
-se intende o meno continuare la simulazione, ne acquisisce la risposta e agisce di
-conseguenza.
+La quarta versione estende le precedenti consentendo la descrizione, da parte del
+configuratore, e la simulazione, da parte del fruitore, di PN con priorità (PNp).
+Più specificamente, la nuova versione deve consentire al configuratore di scegliere una
+PN fra quelle salvate in forma persistente e usarla al fine di definire una PNp. Per
+definire una PNp, il configuratore deve attribuire una priorità a ciascuna transizione della
+PN prescelta. Per semplificare l’inserimento delle priorità, si può fare ricorso a dei valori
+di default. In particolare, il valore di default della priorità di una transizione è quello
+minimo, pari a 1. La stessa PN può essere utilizzata per descrivere più PNp distinte, che
+differiscono unicamente per i valori delle priorità. Ogni singola PNp deve essere
+sintatticamente corretta, ovvero tutte le priorità devono assumere valori interi positivi.
+Dietro richiesta del configuratore, ciascuna descrizione di PNp sintatticamente corretta
+può essere salvata in forma persistente. Tutte le PNp salvate devono essere diverse l’una
+dall’altra. Le descrizioni salvate devono essere accessibili al configuratore, che, in
+qualunque sessione, può richiedere la visualizzazione di ognuna di esse.
+La nuova versione deve consentire al fruitore di scegliere una PNp fra quelle salvate in
+forma persistente e simulare una o più evoluzioni della stessa. All’inizio della
+simulazione la marcatura corrente è quella iniziale. La simulazione procede 
+Marina Zanella - Ingegneria del Software - Elaborato a.a. 2020-2021 8
+iterativamente, raggiungendo a ogni iterazione una nuova marcatura, attraverso lo scatto
+di una delle transizioni la cui priorità è la più elevata fra quelle di tutte le transizioni
+abilitate data la marcatura corrente. La marcatura raggiunta (che, incidentalmente, può
+coincidere con quella corrente) diventa quella corrente, e così via finché il fruitore non
+ponga fine alla simulazione o non si sia raggiunta una marcatura che denoti un blocco
+critico della PNp.
+Più dettagliatamente, a ogni iterazione della simulazione di una PNp, data la marcatura
+corrente, si possono verificare i tre casi sottoelencati.
+1) Non esiste alcuna transizione abilitata: l’applicazione evidenzia la situazione di
+blocco critico e termina la simulazione.
+2) Esiste una sola transizione abilitata dotata di priorità massima: l’applicazione
+visualizza tale transizione nonché la marcatura prossima raggiunta attraverso lo
+scatto della stessa.
+3) Esistono più transizioni abilitate dotate della medesima priorità massima:
+l’applicazione chiede al fruitore di sceglierne una e visualizza la marcatura prossima
+raggiunta attraverso lo scatto della stessa.
+Al termine dell’iterazione condotta secondo i casi 2 e 3, la marcatura raggiunta diventa
+quella corrente; l’applicazione chiede al fruitore se intende continuare la simulazione, ne
+acquisisce la risposta e agisce di conseguenza.

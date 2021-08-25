@@ -9,37 +9,61 @@ public class Simulatore {
 	
 	public Simulatore (Petri_network rete) {
 		this.rete = rete;
+
 	}
 	
+	/*public Simulatore (Priority_network pnp) {
+		this.rete = pnp;
+	}*/
+	
 	public void nextStep(){
-		int possibili = transAttivabili().size();
+		ArrayList<Petri_transition> transizioniAttivabili = topPriorityTransitions();
+		int possibili = transizioniAttivabili.size();
 		if (possibili == 0) 
 			System.out.println("BLOCCO CRITICO");
 		else if (possibili == 1) {
 			stampAttivabili();
 			System.out.println("C'è un'unica transizione attivabile, prossimo step:");
-			modificaToken(transAttivabili().get(0));
+			modificaToken(transizioniAttivabili.get(0));
 			Menu_Visua.printPetriNet(rete);
 			}
 		else {
 			//stampa a video, richiede la scelta, esegue
-			System.out.println("Quale transizione vuoi attivare?");
+			System.out.println("È possibile attivare le seguenti transizioni: \n Quale vuoi attivare?");
 			stampAttivabili();
-			int scelta = Utility.readLimitedInt(0, transAttivabili().size() -1);
-			modificaToken(transAttivabili().get(scelta));
+			int scelta = Utility.readLimitedInt(0, transizioniAttivabili.size() -1);
+			modificaToken(transizioniAttivabili.get(scelta));
 			Menu_Visua.printPetriNet(rete);
 		}
 	}
 	
 	
 	private void stampAttivabili() {
+		ArrayList<Petri_transition> transizioni = topPriorityTransitions();
 		System.out.println("Lista transizioni attivabili:");
-		for (int i=0; i<transAttivabili().size(); i++) {
-			System.out.println(i + ") " + transAttivabili().get(i).getName());
+		for (int i=0; i<transizioni.size(); i++) {
+			System.out.println(i + ") " + transizioni.get(i).getName());
 		}
 	}
 	
+	//TUTTE LE TRANSIZIONI ATTIVABILI CON PRIORITA MASSIMA
+	private ArrayList<Petri_transition> topPriorityTransitions(){
+		ArrayList<Petri_transition> risultato = new ArrayList<>();
+		int topP = 1;
+		for (Petri_transition pt : transAttivabili()) {
+			if(pt.getPriority() > topP) {
+				topP = pt.getPriority();
+				risultato.clear();
+				risultato.add(pt);
+			}
+			else if(pt.getPriority() == topP)
+				risultato.add(pt);
+		}
+		return risultato;
+	}
 	
+	
+	//TUTTE LE TRANSIZIONI ATTIVABILI PERCHE HANNO TOKEN SUFFICIENTI LE LOCATION VICINE
 	private ArrayList<Petri_transition> transAttivabili(){
 		ArrayList<Petri_transition> risultato = new ArrayList<>();
 		

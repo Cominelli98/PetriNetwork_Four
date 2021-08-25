@@ -19,7 +19,7 @@ public final class Menu_Pnp {
 			"da quale rete vuoi partire?",
 			"Come vuoi chiamare questa PNp?",
 			"Esiste già una Pnp con questo nome",
-			"Questa rete di petri esiste già",
+			"Questa PNP esiste già",
 	};
 	private static final String NO_RETI_V = "Non ci sono PNp da visualizzare";
 	private static final String NO_RETI_S = "Non ci sono PNp da salvare";
@@ -58,17 +58,17 @@ public final class Menu_Pnp {
 				int scelta;
 				int selezione;
 				try {
-		//		s = ReadN.readFile(Priority_network.class);
+					s = ReadN.readFile(Priority_network.class);
 				} catch (FileNotFoundException f) {
 					f.printStackTrace();
 				}
 				System.out.println("Scegli di quale PNp vuoi simulare l'evoluzione");
-			//	System.out.println(ReadN.getNetNamesList(Priority_network.class));
+				System.out.println(ReadN.getNetNamesList(Priority_network.class));
 				scelta = Utility.readLimitedInt(0, s.size()-1);
 				rete = (Priority_network) ReadN.jsonToObject(s.get(scelta), Priority_network.class);
 				daSimulare = new Simulatore(rete);
 				System.out.println("STATO DI PARTENZA:");
-				Menu_Visua.printPnp(rete);
+				Menu_Visua.printPetriNet(rete);
 				do {
 					System.out.println("MARCATURA SUCCESSIVA:");
 					daSimulare.nextStep();
@@ -112,8 +112,9 @@ public final class Menu_Pnp {
 			for(i = 0; i<ns.size(); i++) {
 				if (ns.get(i).getId() == pn.get(select).getFatherNetId())
 					break;
-			}	
+			}
 			Priority_network toAdd = new Priority_network(pn.get(select), ns.get(i), name);
+			
 		/*	setCosts(toAdd, pn.get(select));
 			setTokens(toAdd, pn.get(select)); */
 			setPriorities(toAdd);

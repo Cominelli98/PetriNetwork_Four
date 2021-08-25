@@ -11,8 +11,9 @@ public class Menu {
 	private final String MENUSTART[] = {
 			"MENU:",
 			"___________________________",
-			"1:Crea una rete e gestiscila",
+			"1:Gestione reti",
 			"2:Gestisci reti di Petri",
+			"3:Gestione PNp",
 			"0:Esci",
 			"___________________________",
 			
@@ -34,7 +35,7 @@ public class Menu {
 		priorityNetworks = new ArrayList<>();
 		WriteN.fileCreation();
 		Network.network_id = Utility.getMax(ReadN.getNetIDsFromFile(Network.class));
-		Petri_network.petriNetworkId = Utility.getMax(ReadN.getNetIDsFromFile(Petri_network.class));
+		Petri_network.petriNetworkId = maxPetriId();
 	}
 	
 	/**
@@ -63,6 +64,9 @@ public class Menu {
 					//createPetri();
 					Menu_Petri.petriMenu(petriNetworks, networks);
 					break;
+				case 3: 
+					Menu_Pnp.priorityMenu(priorityNetworks, petriNetworks, networks);
+					break;
 				case 0:
 					Utility.close();
 					break;
@@ -74,9 +78,11 @@ public class Menu {
 	public void loadSavedNets() {
 		ArrayList<String> n = new ArrayList<String>();
 		ArrayList<String> pn = new ArrayList<String>();
+		ArrayList<String> pnp = new ArrayList<String>();
 			try {
 				n = ReadN.readFile(Network.class);
 				pn = ReadN.readFile(Petri_network.class);
+				pnp = ReadN.readFile(Priority_network.class);
 
 			} catch (FileNotFoundException | IllegalArgumentException e1) {
 				// TODO Auto-generated catch block
@@ -86,6 +92,18 @@ public class Menu {
 				networks.add((Network) ReadN.jsonToObject(s, Network.class));
 			for(String s : pn)
 				petriNetworks.add((Petri_network) ReadN.jsonToObject(s, Petri_network.class));
+			for(String s : pnp)
+				priorityNetworks.add((Priority_network) ReadN.jsonToObject(s, Priority_network.class));
+	}
+	
+	public int maxPetriId() {
+		int maxIdPetris = 0; 
+		if(Utility.getMax(ReadN.getNetIDsFromFile(Petri_network.class))>Utility.getMax(ReadN.getNetIDsFromFile(Priority_network.class)))
+				maxIdPetris = Utility.getMax(ReadN.getNetIDsFromFile(Petri_network.class));
+		else 
+			maxIdPetris = Utility.getMax(ReadN.getNetIDsFromFile(Priority_network.class));
+		
+		return maxIdPetris;
 	}
 }
 	

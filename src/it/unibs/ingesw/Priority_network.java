@@ -2,11 +2,15 @@ package it.unibs.ingesw;
 
 public class Priority_network extends Petri_network{
 	
+	private Petri_network petrus;
+	
 	public Priority_network(Petri_network pn, Network n, String name) {
 		super(n, name);
-		petriLocations = pn.getLocations();
+		
+		
+		/*petriLocations = pn.getLocations();
 		petriTransitions = pn.getTransitions();
-		petriNetLinks = pn.getLinks();
+		petriNetLinks = pn.getLinks();*/
 		this.fatherNetId = pn.getFatherNetId();
 		this.name = name;
 	}
@@ -20,6 +24,5 @@ public class Priority_network extends Petri_network{
 		}
 		return s;
 	}
-	
 
 }

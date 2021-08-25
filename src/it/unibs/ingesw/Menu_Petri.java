@@ -146,6 +146,8 @@ public final class Menu_Petri {
 			for (int j=0; j<toCheck.getTransitions().size(); j++) {
 				if(toCheck.getTransitions().get(j).getValue() != pn.getTransitions().get(j).getValue())
 					return false;
+				/*if(toCheck.getTransitions().get(j).getPriority() != pn.getTransitions().get(j).getPriority())
+					return false;*/
 			}
 			return true;
 		}

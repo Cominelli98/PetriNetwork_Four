@@ -13,6 +13,7 @@ public final class ReadN {
 	private static final int ID_INIZIALE = -1;
 	private static final String FILE_NET = "data.txt";
 	private static final String FILE_PNET = "petri_data.txt";
+	private static final String FILE_PNP = "pnp_data.txt";
 
 	
 	public static Object jsonToObject(String s, Class c ) {
@@ -26,6 +27,8 @@ public final class ReadN {
 			data = FILE_NET;
 		else if (c == Petri_network.class)
 			data = FILE_PNET;
+		else if (c == Priority_network.class)
+			data = FILE_PNP;
 		else 
 			throw new IllegalArgumentException("tipo non valido");
 		

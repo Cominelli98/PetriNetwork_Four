@@ -125,7 +125,7 @@ public final class Menu_Visua {
 				System.out.println(pnp.get(i).getLinksList());
 				break;
 			case 4:
-				printPnp(pnp.get(i));
+				printPetriNet(pnp.get(i));
 				break;
 			case 0:
 				break;
@@ -133,7 +133,7 @@ public final class Menu_Visua {
 		}while (select != 0);
 		
 	}
-	
+
 	
 	
 	public static StringBuffer getPNetworksList(ArrayList<Petri_network> pn){
@@ -164,7 +164,7 @@ public final class Menu_Visua {
 		return f;
 	}
 	
-	public static void printPnp(Priority_network pnp) {
+	/*public static void printPnp(Priority_network pnp) {
 		System.out.println("ELENCO LOCATIONS:");
 		System.out.println(pnp.getLocationsList());
 		System.out.println("ELENCO TRANSITIONS:");
@@ -173,6 +173,9 @@ public final class Menu_Visua {
 		System.out.println(pnp.getLinksList());
 		}
 	public void savedNetViewer(ArrayList<Network> savedNet) {
-		
 	}
+	
+	NON SERVE PERCHE JAVA CE LA SA
+		*/
+	
 }

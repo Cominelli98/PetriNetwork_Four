@@ -60,6 +60,28 @@ public final class Menu_Salva {
 		}
 	}
 	
+	public static void pnpSaveOption(ArrayList<Priority_network> pnp) {
+		int select = -1;
+		for (String s : MENUSALVA)
+			System.out.println(s);
+		select = Utility.readLimitedInt(0, MENUSALVA.length-4);
+		switch (select) {
+		case 0:
+			break;
+		case 1:
+			System.out.println(RICHIESTA_SALVATAGGIO);
+			System.out.println(Menu_Visua.getPnpList(pnp));
+			int i = Utility.readLimitedInt(0, pnp.size());
+			saveNetOnFile(pnp.get(i));
+			break;
+		case 2:
+			for (Priority_network n : pnp)
+				saveNetOnFile(n);
+			break;
+		}
+	}
+	
+	
 
 	/**
 	 * Metodo che richiama dalla classe statica WriteN il salvataggio su file delle reti create
