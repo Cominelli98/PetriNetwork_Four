@@ -1,5 +1,6 @@
 package it.unibs.ingesw;
 
+
 public class Priority_network extends Petri_network{
 	
 	private Petri_network petrus;
@@ -16,6 +17,7 @@ public class Priority_network extends Petri_network{
 		this.fatherNetId = pn.getFatherNetId();
 		this.name = name;
 		this.priority_NetID = ++priorityNetID;
+		this.petriNetId = pn.getId();
 	}
 	
 	public StringBuffer getTransitionsList() {
