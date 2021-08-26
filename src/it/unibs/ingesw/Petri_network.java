@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Petri_network implements IDNameGiver{
 	protected ArrayList<Petri_location> petriLocations;
 	protected ArrayList<Petri_transition> petriTransitions;
-	protected ArrayList<Petri_link> petriNetLinks;
+	protected ArrayList<Link> petriNetLinks;
 	protected int petriNetId; 
 	protected int fatherNetId;
 	protected String name;
@@ -15,7 +15,7 @@ public class Petri_network implements IDNameGiver{
 		this.petriNetId = ++petriNetworkId;
 		petriLocations = Converter.toPetriLocations(n.getLocations(), petriNetId);
 		petriTransitions = Converter.toPetriTransitions(n.getTransitions(), petriNetId);
-		petriNetLinks = Converter.toPetriLinks(petriLocations, petriTransitions, n.getNetLinks(), petriNetId);
+		petriNetLinks = Converter.toPetriLinks(n.getNetLinks(), petriNetId);
 		this.fatherNetId = n.getId();
 		this.name = name;
 	}
@@ -60,12 +60,12 @@ public class Petri_network implements IDNameGiver{
 	public StringBuffer getLinksList() {
 		StringBuffer s = new StringBuffer("");
 		for (int i = 0; i < petriNetLinks.size(); i++) {
-			s.append(i + ")" + petriNetLinks.get(i).getOrigin().getName() + "---->" + petriNetLinks.get(i).getDestination().getName() + "\n");
+			s.append(i + ")" + nodeNameFromID(petriNetLinks.get(i).getOrigin()) + "---->" + nodeNameFromID(petriNetLinks.get(i).getDestination())+ "\n");
 		}
 		return s;
 	}
 	
-	public ArrayList<Petri_link> getLinks(){
+	public ArrayList<Link> getLinks(){
 		return this.petriNetLinks;
 	}
 
@@ -75,28 +75,44 @@ public class Petri_network implements IDNameGiver{
 	}
 	
 	public void reduceToken(int idTransition, int quantity) {
-		for(Petri_link l : petriNetLinks) {
-			if(l.getTransition().getId() == idTransition && l.getOrientation() == 1) {
-				l.reduceToken(quantity);
-				int id = l.getLocation().getId();
-				for(Petri_location pl : petriLocations) {
-					if(pl.getId() == id)
-						pl.reduceToken(quantity);
-				}
+		for(Link l : petriNetLinks) {
+			if(l.getTransition() == idTransition && l.getOrientation() == 1) {
+				reduceLocationToken(l.getLocation(), quantity);
 			}
 		}
 	}
 	
 	public void addToken(int idTransition, int quantity) {
-		for(Petri_link l : petriNetLinks) {
-			if(l.getTransition().getId() == idTransition && l.getOrientation() == -1) {
-				l.addToken(quantity);
-				int id = l.getLocation().getId();
-				for(Petri_location pl : petriLocations) {
-					if(pl.getId() == id)
-						pl.addToken(quantity);
+		for(Link l : petriNetLinks) {
+			if(l.getTransition() == idTransition && l.getOrientation() == -1) {
+				addLocationToken(l.getLocation(), quantity);
 				}
-			}
+		}
+	}
+	
+	public String nodeNameFromID(int id) {
+		for(Location pl : petriLocations) {
+			if(pl.getId() == id)
+				return pl.getName();
+		}
+		for(Transition pt : petriTransitions) {
+			if(pt.getId() == id)
+				return pt.getName();
+		}
+		return null;
+	}
+	
+	public void reduceLocationToken(int id, int quantity) {
+		for(Petri_location pl : petriLocations) {
+			if(pl.getId() == id)
+				pl.reduceToken(quantity);
+		}
+	}
+	
+	public void addLocationToken(int id, int quantity) {
+		for(Petri_location pl : petriLocations) {
+			if(pl.getId() == id)
+				pl.addToken(quantity);
 		}
 	}
 }

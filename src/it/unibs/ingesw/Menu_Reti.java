@@ -175,12 +175,12 @@ public final class Menu_Reti {
 			if (checkLinkExistence(l, t, n, 1))
 				System.out.println(LINK_GIA_PRESENTE);
 			else
-				n.addLink(new Link(l, t, n.getId(), 1));
+				n.addLink(new Link(l.getId(), t.getId(), n.getId(), 1));
 		else 
 			if (checkLinkExistence(l, t, n, -1))
 				System.out.println(LINK_GIA_PRESENTE);
 			else {
-				n.addLink(new Link(l, t, n.getId(),-1));
+				n.addLink(new Link(l.getId(), t.getId(), n.getId(),-1));
 			}
 		//TODO metti qualche controllo sull'inserimento corretto dell'orientamento
 	}
@@ -194,8 +194,8 @@ public final class Menu_Reti {
 	private static boolean checkLinkExistence(Location l, Transition t, Network n, int orientation) {
 		
 		for (int i = 0; i < n.getNetLinks().size(); i++) {
-			if(n.getNetLinks().get(i).getLocation().equals(l) &&
-					n.getNetLinks().get(i).getTransition().equals(t) &&
+			if(n.getNetLinks().get(i).getLocation() == l.getId() &&
+					n.getNetLinks().get(i).getTransition() == t.getId() &&
 						n.getNetLinks().get(i).getOrientation() == orientation)
 				return true;
 		}

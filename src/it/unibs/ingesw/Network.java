@@ -108,7 +108,7 @@ public class Network implements IDNameGiver{
 	public StringBuffer getLinksList() {
 		StringBuffer s = new StringBuffer("");
 		for (int i = 0; i < netLinks.size(); i++) {
-			s.append(i + ")" + netLinks.get(i).getOrigin().getName() + "---->" + netLinks.get(i).getDestination().getName() + "\n");
+			s.append(i + ")" + nodeNameFromID(netLinks.get(i).getOrigin()) + "---->" + nodeNameFromID(netLinks.get(i).getDestination())+ "\n");
 		}
 		return s;
 	}
@@ -126,6 +126,18 @@ public class Network implements IDNameGiver{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String nodeNameFromID(int id) {
+		for(Location l : locations) {
+			if(l.getId() == id)
+				return l.getName();
+		}
+		for(Transition t : transitions) {
+			if(t.getId() == id)
+				return t.getName();
+		}
+		return null;
 	}
 
 }

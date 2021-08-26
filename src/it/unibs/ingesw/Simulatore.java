@@ -81,7 +81,7 @@ public class Simulatore {
 		if(!exist)
 			return false;
 		for (int i = 0; i< rete.getLinks().size(); i++) {
-			if (rete.getLinks().get(i).getDestination().getId() == pt.getId()) {
+			if (rete.getLinks().get(i).getDestination() == pt.getId()) {
 				x = getIndexOfLocation(rete.getLinks().get(i).getOrigin());
 				if(rete.getLocations().get(x).getValue() < pt.getValue())
 					return false;
@@ -97,7 +97,7 @@ public class Simulatore {
 	 */
 	private boolean checkIfOneLinkExistWithTrans(Petri_transition pt) {
 		for(int i = 0; i< rete.getLinks().size(); i++) {
-			if(rete.getLinks().get(i).getDestination().getId() == pt.getId())
+			if(rete.getLinks().get(i).getDestination() == pt.getId())
 				return true;
 		}
 		return false;
@@ -108,9 +108,9 @@ public class Simulatore {
 		rete.addToken(pt.getId(), 1);	//viene passato 1 perchè per ora è il valore di default
 	}
 	
-	private int getIndexOfLocation(Petri_location toFind) {
+	private int getIndexOfLocation(int toFind) {
 		for (int i = 0; i < rete.getLocations().size(); i++) {
-			if(rete.getLocations().get(i).getId() == toFind.getId())
+			if(rete.getLocations().get(i).getId() == toFind)
 				return i;
 		}
 		return 0;
