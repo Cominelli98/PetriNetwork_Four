@@ -35,7 +35,8 @@ public class Menu {
 		priorityNetworks = new ArrayList<>();
 		WriteN.fileCreation();
 		Network.network_id = Utility.getMax(ReadN.getNetIDsFromFile(Network.class));
-		Petri_network.petriNetworkId = maxPetriId();
+		Petri_network.petriNetworkId = Utility.getMax(ReadN.getNetIDsFromFile(Petri_network.class));//maxPetriId();
+		Priority_network.priorityNetID = Utility.getMax(ReadN.getNetIDsFromFile(Priority_network.class));
 	}
 	
 	/**

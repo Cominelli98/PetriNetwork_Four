@@ -118,7 +118,7 @@ public final class Menu_Pnp {
 		/*	setCosts(toAdd, pn.get(select));
 			setTokens(toAdd, pn.get(select)); */
 			setPriorities(toAdd);
-			if (!pnpExistence(toAdd, pnp))
+			if (!checkPNpExistence(toAdd.getName(), pnp))
 				pnp.add(toAdd);
 			else
 				System.out.println(MESSAGGI_MENU[3]);
@@ -145,21 +145,8 @@ public final class Menu_Pnp {
 		
 		private static boolean pnpSingleCheck(Priority_network pnp, Priority_network toCheck) {
 			if (toCheck.getFatherNetId() == pnp.getFatherNetId()){
-				for(int i=0; i<toCheck.getLocations().size(); i++) {
-					if(toCheck.getLocations().get(i).getValue() != pnp.getLocations().get(i).getValue())
-						return false;
-				}
-				
-				for (int j=0; j<toCheck.getTransitions().size(); j++) {
-					if(toCheck.getTransitions().get(j).getValue() != pnp.getTransitions().get(j).getValue())
-						return false;
-					if(toCheck.getTransitions().get(j).getPriority() != pnp.getTransitions().get(j).getPriority())
-						return false;
-				}
-
-				
-				
-				return true;
+				if(pnp.getName().equals(toCheck.getName()))
+					return true;
 			}
 			return false;
 		}
