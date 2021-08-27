@@ -4,25 +4,24 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
-public class Menu {
+public final class Menu {
 	
 	private final String SELEZIONE = "Seleziona: ";
 	
 	private final String MENUSTART[] = {
 			"MENU:",
 			"___________________________",
-			"1:Gestione reti",
-			"2:Gestisci reti di Petri",
-			"3:Gestione PNp",
+			"1:entra in modalità configuratore",
+			"2:entra in modalità fruitore",
 			"0:Esci",
 			"___________________________",
 			
 	};
 	
-	private Network currentNetwork;
-	private ArrayList<Network> networks;
-	private ArrayList<Petri_network> petriNetworks;
-	private ArrayList<Priority_network> priorityNetworks;
+	private static Network currentNetwork;
+	private static ArrayList<Network> networks;
+	private static ArrayList<Petri_network> petriNetworks;
+	private static ArrayList<Priority_network> priorityNetworks;
 	
 	/**
 	 * Costruisce un menù inizializzando l'array di reti e creando, se non esiste ancora, il file su cui verranno
@@ -53,20 +52,10 @@ public class Menu {
 			select = Utility.readLimitedInt(0, MENUSTART.length-4);
 			switch (select) {
 				case 1:
-					Menu_Reti.createNetwork(currentNetwork, networks);
+					Menu_configuratore.configuratore();
 					break;
 				case 2:
-//					if(networks.size() != 0)
-//						saveOption();
-//					else
-//						System.out.println("Non ci sono reti da salvare");
-//					break;
-//				case 4:
-					//createPetri();
-					Menu_Petri.petriMenu(petriNetworks, networks);
-					break;
-				case 3: 
-					Menu_Pnp.priorityMenu(priorityNetworks, petriNetworks, networks);
+					Menu_fruitore.menuFriutore();
 					break;
 				case 0:
 					Utility.close();
@@ -105,6 +94,22 @@ public class Menu {
 			maxIdPetris = Utility.getMax(ReadN.getNetIDsFromFile(Priority_network.class));
 		
 		return maxIdPetris;
+	}
+	
+	public static Network getCurrentNetwork() {
+		return currentNetwork;
+	}
+	
+	public static ArrayList<Network> getNetworks(){
+		return networks;
+	}
+
+	public static ArrayList<Petri_network> getPetriNetworks(){
+		return petriNetworks;
+	}
+	
+	public static ArrayList<Priority_network> getPriorityNetworks(){
+		return priorityNetworks;
 	}
 }
 	

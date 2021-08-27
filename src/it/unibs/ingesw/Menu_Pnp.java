@@ -52,29 +52,7 @@ public final class Menu_Pnp {
 					System.out.println(NO_RETI_S);
 				break;
 			case 4:
-				ArrayList<String> s = new ArrayList<String>();
-				Simulatore daSimulare;
-				Priority_network rete;
-				int scelta;
-				int selezione;
-				try {
-					s = ReadN.readFile(Priority_network.class);
-				} catch (FileNotFoundException f) {
-					f.printStackTrace();
-				}
-				System.out.println("Scegli di quale PNp vuoi simulare l'evoluzione");
-				System.out.println(ReadN.getNetNamesList(Priority_network.class));
-				scelta = Utility.readLimitedInt(0, s.size()-1);
-				rete = (Priority_network) ReadN.jsonToObject(s.get(scelta), Priority_network.class);
-				daSimulare = new Simulatore(rete);
-				System.out.println("STATO DI PARTENZA:");
-				Menu_Visua.printPetriNet(rete);
-				do {
-					System.out.println("MARCATURA SUCCESSIVA:");
-					daSimulare.nextStep();
-					System.out.println("Vuoi proseguire con la simulazione? \n 0)Esci \n 1)Prosegui");
-					selezione = Utility.readLimitedInt(0, 1);
-				}while(selezione!=0);
+				simulaPriorityNet();
 				break;
 		/*	case 5:
 				ArrayList<String> s2 = new ArrayList<String>();
@@ -95,7 +73,7 @@ public final class Menu_Pnp {
 		
 	}
 		
-		private static void createPnp(ArrayList<Priority_network> pnp, ArrayList<Petri_network> pn, ArrayList<Network> ns) {
+		public static void createPnp(ArrayList<Priority_network> pnp, ArrayList<Petri_network> pn, ArrayList<Network> ns) {
 			
 			System.out.println(Menu_Visua.getPNetworksList(pn));
 			int select = -1;
@@ -199,6 +177,32 @@ public final class Menu_Pnp {
 				System.out.println("Inserisci la priorità della transizione "+pt.getName() + " (1 per default)");
 				pt.setPriority(Utility.readLowLimitInt(1));
 			}
+		}
+		
+		public static void simulaPriorityNet() {
+			ArrayList<String> s = new ArrayList<String>();
+			Simulatore daSimulare;
+			Priority_network rete;
+			int scelta;
+			int selezione;
+			try {
+				s = ReadN.readFile(Priority_network.class);
+			} catch (FileNotFoundException f) {
+				f.printStackTrace();
+			}
+			System.out.println("Scegli di quale PNp vuoi simulare l'evoluzione");
+			System.out.println(ReadN.getNetNamesList(Priority_network.class));
+			scelta = Utility.readLimitedInt(0, s.size()-1);
+			rete = (Priority_network) ReadN.jsonToObject(s.get(scelta), Priority_network.class);
+			daSimulare = new Simulatore(rete);
+			System.out.println("STATO DI PARTENZA:");
+			Menu_Visua.printPetriNet(rete);
+			do {
+				System.out.println("MARCATURA SUCCESSIVA:");
+				daSimulare.nextStep();
+				System.out.println("Vuoi proseguire con la simulazione? \n 0)Esci \n 1)Prosegui");
+				selezione = Utility.readLimitedInt(0, 1);
+			}while(selezione!=0);
 		}
 
 }

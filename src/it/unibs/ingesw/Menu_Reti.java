@@ -11,8 +11,6 @@ public final class Menu_Reti {
 			"1:Crea location",
 			"2:Crea transition",
 			"3:Crea link",
-			"4:Visualizza una rete",
-			"5:Salva una o più reti",
 			"0:Indietro",
 			"___________________________"};
 	final static String NOME_GIA_PRESENTE_RETE = "Esiste già una rete con questo nome";
@@ -89,19 +87,6 @@ public final class Menu_Reti {
 					System.out.print(n.getTransitionsList());
 					trans = Utility.readLimitedInt(0, n.getTransitions().size()-1);
 					createLink(n.getTransition(trans), n.getLocation(loc), n);
-					break;
-				case 4:
-					if(ns.size() != 0)
-						Menu_Visua.netViewer(ns);
-					else {
-						System.out.println(NO_RETI_V);
-					}
-					break;
-				case 5:
-					if(ns.size() != 0)
-						Menu_Salva.saveOption(ns);
-					else 
-						System.out.println(NO_RETI_S);
 					break;
 			}
 		}while(select != 0);
