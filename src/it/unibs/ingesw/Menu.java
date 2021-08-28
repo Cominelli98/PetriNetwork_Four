@@ -5,9 +5,7 @@ import java.util.ArrayList;
 
 
 public final class Menu {
-	
-	private final String SELEZIONE = "Seleziona: ";
-	
+		
 	private final String MENUSTART[] = {
 			"MENU:",
 			"___________________________",
@@ -84,16 +82,6 @@ public final class Menu {
 				petriNetworks.add((Petri_network) ReadN.jsonToObject(s, Petri_network.class));
 			for(String s : pnp)
 				priorityNetworks.add((Priority_network) ReadN.jsonToObject(s, Priority_network.class));
-	}
-	
-	public int maxPetriId() {
-		int maxIdPetris = 0; 
-		if(Utility.getMax(ReadN.getNetIDsFromFile(Petri_network.class))>Utility.getMax(ReadN.getNetIDsFromFile(Priority_network.class)))
-				maxIdPetris = Utility.getMax(ReadN.getNetIDsFromFile(Petri_network.class));
-		else 
-			maxIdPetris = Utility.getMax(ReadN.getNetIDsFromFile(Priority_network.class));
-		
-		return maxIdPetris;
 	}
 	
 	public static Network getCurrentNetwork() {

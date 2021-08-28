@@ -18,8 +18,7 @@ public final class Menu_Reti {
 	final static String NOME_GIA_PRESENTE_TRANSITION = "Esiste già una transition con questo nome";
 	final static String LINK_GIA_PRESENTE = "Link già presente";
 	final static String ASKLINK = "A cosa vuoi collegarla? Inserisci il numero relativo";
-	private static final String NO_RETI_V = "Non ci sono reti di petri da visualizzare";
-	private static final String NO_RETI_S = "Non ci sono reti di petri da salvare";
+	
 	
 	/**
 	 * Metodo di gestione della creazione di reti:
@@ -167,7 +166,6 @@ public final class Menu_Reti {
 			else {
 				n.addLink(new Link(l.getId(), t.getId(), n.getId(),-1));
 			}
-		//TODO metti qualche controllo sull'inserimento corretto dell'orientamento
 	}
 	
 	/**

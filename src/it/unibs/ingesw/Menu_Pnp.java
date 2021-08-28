@@ -24,43 +24,7 @@ public final class Menu_Pnp {
 	private static final String NO_RETI_V = "Non ci sono PNp da visualizzare";
 	private static final String NO_RETI_S = "Non ci sono PNp da salvare";
 	
-	//TODO: da togliere?
-/*
-	public static void priorityMenu(ArrayList<Priority_network> pnp, ArrayList<Petri_network> pn, ArrayList<Network> ns) {
-		int select = -1;
-		do {
-			for (String s : MENUPNP)
-				System.out.println(s);
-			
-			select = Utility.readLimitedInt(0, MENUPNP.length-3);
-			switch(select) {
-			
-			case 0:
-				break;
-			case 1:
-				createPnp(pnp, pn, ns);
-				break;
-			case 2: 
-				if(pnp.size() != 0)
-					Menu_Visua.pnpViewer(pnp);
-				else {
-					System.out.println(NO_RETI_V);
-				}
-				break;
-			case 3:
-				if(pnp.size() != 0)
-					Menu_Salva.pnpSaveOption(pnp);
-				else 
-					System.out.println(NO_RETI_S);
-				break;
-			case 4:
-				simulaPriorityNet();
-				break;
-			}
-		}while (select!=0);
-		
-	}*/
-		
+
 		public static void createPnp(ArrayList<Priority_network> pnp, ArrayList<Petri_network> pn, ArrayList<Network> ns) {
 			
 			System.out.println(Menu_Visua.getPNetworksList(pn));
@@ -80,9 +44,6 @@ public final class Menu_Pnp {
 					break;
 			}
 			Priority_network toAdd = new Priority_network(pn.get(select), name);
-			
-		/*	setCosts(toAdd, pn.get(select));
-			setTokens(toAdd, pn.get(select)); */
 			setPriorities(toAdd);
 			if (!checkPNpExistence(toAdd.getName(), pnp))
 				pnp.add(toAdd);

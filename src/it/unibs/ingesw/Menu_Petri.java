@@ -21,59 +21,6 @@ public final class Menu_Petri {
 			"Esiste già una rete di petri con questo nome",
 			"Questa rete di petri esiste già",
 	};
-	private static final String NO_RETI_V = "Non ci sono reti di petri da visualizzare";
-	private static final String NO_RETI_S = "Non ci sono reti di petri da salvare";
-	
-	
-	//TODO: da togliere?
-/*	public static void petriMenu(ArrayList<Petri_network> pn, ArrayList<Network> ns) {
-		int select = -1;
-		do {
-			for (String s : MENUPETRI)
-				System.out.println(s);
-			
-			select = Utility.readLimitedInt(0, MENUPETRI.length-3);
-			switch(select) {
-			
-			case 0:
-				break;
-			case 1:
-				createPetri(pn, ns);
-				break;
-			case 2: 
-				if(pn.size() != 0)
-					Menu_Visua.petriNetViewer(pn);
-				else {
-					System.out.println(NO_RETI_V);
-				}
-				break;
-			case 3:
-				if(pn.size() != 0)
-					Menu_Salva.pSaveOption(pn);
-				else 
-					System.out.println(NO_RETI_S);
-				break;
-			case 4:
-				simulaPetri();
-				break;
-			case 5:
-				ArrayList<String> s2 = new ArrayList<String>();
-				int j;
-				try {
-					s2 = ReadN.readFile(Petri_network.class);
-					} catch (FileNotFoundException f) {
-						f.printStackTrace();
-					}
-				Petri_network prete;
-				System.out.println(ReadN.getNetNamesList(Petri_network.class));
-				j = Utility.readLimitedInt(0, 10000);
-				prete = (Petri_network) ReadN.jsonToObject(s2.get(j), Petri_network.class);
-				pn.add(prete);
-				break;
-			}
-		}while (select!=0);
-		
-	}*/
 	
 	public static void createPetri(ArrayList<Petri_network> pn, ArrayList<Network> ns) {
 		
@@ -126,8 +73,6 @@ public final class Menu_Petri {
 			for (int j=0; j<toCheck.getTransitions().size(); j++) {
 				if(toCheck.getTransitions().get(j).getValue() != pn.getTransitions().get(j).getValue())
 					return false;
-				/*if(toCheck.getTransitions().get(j).getPriority() != pn.getTransitions().get(j).getPriority())
-					return false;*/
 			}
 			return true;
 		}
