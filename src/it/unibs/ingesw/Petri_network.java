@@ -8,7 +8,7 @@ public class Petri_network implements IDNameGiver{
 	protected ArrayList<Link> petriNetLinks;
 	protected int petriNetId; 
 	protected int fatherNetId;
-	protected String name;
+	private String name;
 	static int petriNetworkId = 0;
 	
 	public Petri_network(Network n, String name) {
@@ -18,6 +18,15 @@ public class Petri_network implements IDNameGiver{
 		petriNetLinks = Converter.toPetriLinks(n.getNetLinks(), petriNetId);
 		this.fatherNetId = n.getId();
 		this.name = name;
+	}
+	
+	public Petri_network(Petri_network pt, String name) {
+		this.fatherNetId = pt.getFatherNetId();
+		this.name = name;
+		this.petriLocations = pt.getLocations();
+		this.petriTransitions = pt.getTransitions();
+		this.petriNetLinks = pt.getLinks();
+		this.petriNetId = pt.getNetId();
 	}
 	
 	public ArrayList<Petri_location> getLocations(){

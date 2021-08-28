@@ -12,9 +12,9 @@ public class Simulatore {
 
 	}
 	
-	/*public Simulatore (Priority_network pnp) {
+	public Simulatore (Priority_network pnp) {
 		this.rete = pnp;
-	}*/
+	}
 	
 	public void nextStep(){
 		ArrayList<Petri_transition> transizioniAttivabili = topPriorityTransitions();
@@ -114,5 +114,41 @@ public class Simulatore {
 				return i;
 		}
 		return 0;
+	}
+	
+	
+	/**
+	 * metodo che ritorna true se tra le transition c'è un pareggio tra le transition con priorità maggiore
+	 * @param attivabili transition che sono attivabili
+	 * @return se c'è o meno un pareggio
+	 */
+	private boolean checkPrioritiesDraw(ArrayList<Petri_transition> attivabili) {
+		ArrayList<Integer> priorities = getPriorities(attivabili);
+		int max = Utility.getMax(priorities);
+		int temp = 0;
+		for(Integer priority : priorities) {
+			if(max == priority)
+					temp++;
+		}	
+		if(temp >= 2)
+				return true;
+		return false;
+	}
+	
+	private ArrayList<Petri_transition> getDraw(ArrayList<Petri_transition> attivabili){
+		ArrayList<Integer> priorities = getPriorities(attivabili);
+		int max = Utility.getMax(priorities);
+		for(int i = 0 ; i < attivabili.size() ; i++) {
+			if(attivabili.get(i).getNetId() != max)
+				attivabili.remove(i);
+		}
+		return attivabili;
+	}
+	
+	private ArrayList<Integer> getPriorities(ArrayList<Petri_transition> attivabili){
+		ArrayList<Integer> priorities = new ArrayList<>();
+		for(Petri_transition pt : attivabili)
+			priorities.add(pt.getPriority());
+		return priorities;
 	}
 }

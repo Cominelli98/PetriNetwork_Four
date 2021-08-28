@@ -23,7 +23,9 @@ public final class Menu_Pnp {
 	};
 	private static final String NO_RETI_V = "Non ci sono PNp da visualizzare";
 	private static final String NO_RETI_S = "Non ci sono PNp da salvare";
-
+	
+	//TODO: da togliere?
+/*
 	public static void priorityMenu(ArrayList<Priority_network> pnp, ArrayList<Petri_network> pn, ArrayList<Network> ns) {
 		int select = -1;
 		do {
@@ -54,24 +56,10 @@ public final class Menu_Pnp {
 			case 4:
 				simulaPriorityNet();
 				break;
-		/*	case 5:
-				ArrayList<String> s2 = new ArrayList<String>();
-				int j;
-				try {
-					s2 = ReadN.readFile(Petri_network.class);
-					} catch (FileNotFoundException f) {
-						f.printStackTrace();
-					}
-				Petri_network prete;
-				System.out.println(ReadN.getNetNamesList(Petri_network.class));
-				j = Utility.readLimitedInt(0, 10000);
-				prete = (Petri_network) ReadN.jsonToObject(s2.get(j), Petri_network.class);
-				pn.add(prete);
-				break;
-			*/}
+			}
 		}while (select!=0);
 		
-	}
+	}*/
 		
 		public static void createPnp(ArrayList<Priority_network> pnp, ArrayList<Petri_network> pn, ArrayList<Network> ns) {
 			
@@ -91,7 +79,7 @@ public final class Menu_Pnp {
 				if (ns.get(i).getId() == pn.get(select).getFatherNetId())
 					break;
 			}
-			Priority_network toAdd = new Priority_network(pn.get(select), ns.get(i), name);
+			Priority_network toAdd = new Priority_network(pn.get(select), name);
 			
 		/*	setCosts(toAdd, pn.get(select));
 			setTokens(toAdd, pn.get(select)); */

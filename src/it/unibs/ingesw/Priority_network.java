@@ -1,23 +1,15 @@
 package it.unibs.ingesw;
 
+import java.util.ArrayList;
 
 public class Priority_network extends Petri_network{
 	
-	private Petri_network petrus;
 	static int priorityNetID = 0;
 	private int priority_NetID;
 	
-	public Priority_network(Petri_network pn, Network n, String name) {
-		super(n, name);
-		
-		
-		/*petriLocations = pn.getLocations();
-		petriTransitions = pn.getTransitions();
-		petriNetLinks = pn.getLinks();*/
-		this.fatherNetId = pn.getFatherNetId();
-		this.name = name;
+	public Priority_network(Petri_network pn, String name) {
+		super(pn, name);
 		this.priority_NetID = ++priorityNetID;
-		this.petriNetId = pn.getId();
 	}
 	
 	public StringBuffer getTransitionsList() {

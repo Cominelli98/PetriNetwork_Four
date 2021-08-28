@@ -24,7 +24,9 @@ public final class Menu_Petri {
 	private static final String NO_RETI_V = "Non ci sono reti di petri da visualizzare";
 	private static final String NO_RETI_S = "Non ci sono reti di petri da salvare";
 	
-	public static void petriMenu(ArrayList<Petri_network> pn, ArrayList<Network> ns) {
+	
+	//TODO: da togliere?
+/*	public static void petriMenu(ArrayList<Petri_network> pn, ArrayList<Network> ns) {
 		int select = -1;
 		do {
 			for (String s : MENUPETRI)
@@ -71,7 +73,7 @@ public final class Menu_Petri {
 			}
 		}while (select!=0);
 		
-	}
+	}*/
 	
 	public static void createPetri(ArrayList<Petri_network> pn, ArrayList<Network> ns) {
 		
