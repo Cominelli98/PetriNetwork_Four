@@ -51,9 +51,7 @@ public final class Menu_Pnp {
 				System.out.println(MESSAGGI_MENU[3]);
 		}	
 		
-	
-		
-		private static boolean pnpExistence(Priority_network toAdd, ArrayList<Priority_network> pnps) {
+	private static boolean pnpExistence(Priority_network toAdd, ArrayList<Priority_network> pnps) {
 			
 			if (pnps.size() == 0) {
 				return false;
@@ -67,9 +65,7 @@ public final class Menu_Pnp {
 			return false;
 
 		}
-		
-		
-		
+	
 		private static boolean pnpSingleCheck(Priority_network pnp, Priority_network toCheck) {
 			if (toCheck.getFatherNetId() == pnp.getFatherNetId()){
 				if(pnp.getName().equals(toCheck.getName()))
@@ -89,39 +85,7 @@ public final class Menu_Pnp {
 			return false;
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-	/*	private static void setCosts(Priority_network toSet, Petri_network pn) {
-			for (Petri_transition pnt : toSet.getTransitions()) {
-				for (Petri_transition pt : pn.getTransitions()) {
-					if(pnt.getId() == pt.getId())
-						pnt.setCost(pt.getValue());
-				}
-			}
-		}
-
-		private static void setTokens(Priority_network toSet, Petri_network pn) {
-			for (Petri_location pnl : toSet.getLocations()) {
-				for (Petri_location pl : pn.getLocations()) {
-					if(pnl.getId() == pl.getId())
-						pnl.setToken(pl.getValue());
-				}
-			}
-		}
-		
-		*/
-		
-		private static void setPriorities(Priority_network toSet) {
+	private static void setPriorities(Priority_network toSet) {
 			for (Petri_transition pt : toSet.getTransitions()) {
 				System.out.println("Inserisci la priorità della transizione "+pt.getName() + " (1 per default)");
 				pt.setPriority(Utility.readLowLimitInt(1));

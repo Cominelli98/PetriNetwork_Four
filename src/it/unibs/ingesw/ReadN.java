@@ -21,6 +21,22 @@ public final class ReadN {
 		return gson.fromJson(s,c);
 	}
 	
+	public static Object loadFromSource(Class c, String source ) throws FileNotFoundException, IOException {
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(source));
+			String toLoad = reader.readLine();
+			Gson gson = new Gson();
+			return gson.fromJson(toLoad,c);
+		} catch (FileNotFoundException e) {
+			throw e;
+		}
+		catch (IOException e) {
+			throw e;
+		}
+		
+	}
+	
 	public static ArrayList<String> readFile(Class c)throws FileNotFoundException, IllegalArgumentException {
 		String data;
 		if (c == Network.class) 

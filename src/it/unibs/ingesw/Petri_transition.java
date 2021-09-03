@@ -7,7 +7,7 @@ public class Petri_transition extends Transition implements GenericNode{
 	public Petri_transition(Transition t, int petriNetId) {
 		super(petriNetId, t.getId(), t.getName());
 		this.cost = 1;
-		this.priority = 1;
+		this.priority = -1;
 	}
 	
 	/*public Petri_transition(Transition t, int petriNetId, int cost) {

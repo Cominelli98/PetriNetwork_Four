@@ -2,7 +2,7 @@ package it.unibs.ingesw;
 
 import java.util.ArrayList;
 
-public class Priority_network extends Petri_network{
+public class Priority_network extends Petri_network implements IDNameGiver{
 	
 	static int priorityNetID = 0;
 	private int priority_NetID;

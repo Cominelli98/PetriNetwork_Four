@@ -99,5 +99,38 @@ public final class Menu {
 	public static ArrayList<Priority_network> getPriorityNetworks(){
 		return priorityNetworks;
 	}
+	
+	public static void addNetwork(Network n) {
+		networks.add(n);
+	}
+	
+	public static void addPetriNetwork(Petri_network n) {
+		petriNetworks.add(n);
+	}
+	
+	public static void addPNPNetwork(Priority_network n) {
+		priorityNetworks.add(n);
+	}
+	
+	public static ArrayList<Integer> netIDs(){
+		ArrayList<Integer> IDs = new ArrayList<>();
+		for(Network n : networks)
+			IDs.add(n.getId());
+		return IDs;
+	}
+	
+	public static ArrayList<Integer> pNetIDs(){
+		ArrayList<Integer> IDs = new ArrayList<>();
+		for(Petri_network pn : petriNetworks)
+			IDs.add(pn.getId());
+		return IDs;
+	}
+	
+	public static ArrayList<Integer> pnpNetIDs(){
+		ArrayList<Integer> IDs = new ArrayList<>();
+		for(Priority_network pnp : priorityNetworks)
+			IDs.add(pnp.getId());
+		return IDs;
+	}
 }
 	
