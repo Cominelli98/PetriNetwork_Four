@@ -29,7 +29,7 @@ public class Node implements GenericNode{
 		return nodeId;
 	}
 
-	public void setNodeId(int nodeId) { //rimuovibile?
+	public void setNodeId(int nodeId) { 
 		this.nodeId = nodeId;
 	}
 
@@ -46,7 +46,6 @@ public class Node implements GenericNode{
 
 	@Override
 	public int getValue() {
-		// TODO Auto-generated method stub
 		return -1;
 	}
 
@@ -54,7 +53,6 @@ public class Node implements GenericNode{
 
 	@Override
 	public void addToken(int i) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -62,19 +60,6 @@ public class Node implements GenericNode{
 
 	@Override
 	public void reduceToken(int i) {
-		// TODO Auto-generated method stub
 		
 	}
-
-
-
-	/*@Override
-	public int getValue() {
-		return 0;
-	}*/
-	
-
-	
-	
-	
 }

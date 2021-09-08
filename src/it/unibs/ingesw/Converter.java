@@ -47,11 +47,4 @@ public final class Converter {
 		return temp;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 }

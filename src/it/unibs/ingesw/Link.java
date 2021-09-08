@@ -14,40 +14,17 @@ public class Link {
 		this.orientation = orientation;
 	}
 
-	/*public <T extends GenericNode> T getOrigin() {
-		if (this.orientation == 1)
-			return (T) location;
-		return (T) transition;
-	}*/
-	
 	public int getOrigin(){
 		if(orientation == 1)
 			return IDNode1;
 		return IDNode2;
 	}
 
-
-	/*public void setOrigin(Node origin) {
-		this.origin = origin;
-	}*/
-
-	/*public <T extends GenericNode > T getDestination() {
-		if(this.orientation == 1)
-			return (T) transition;
-		return (T) location;
-	}*/
-	
 	public int getDestination() {
 		if(orientation == 1)
 			return IDNode2;
 		return IDNode1;
 	}
-	
-
-	/*public void setDestination(Node destination) {
-		this.destination = destination;
-	}
-	*/
 	
 	public int getLocation() {
 		return IDNode1;
